@@ -1,8 +1,10 @@
+const Product = require('../Models/Product')
 //Get one product
 exports.read = async (req, res) => {
     try {
         const id = req.params.id
-        res.status(200).send(`read one product id:${id}  complte`)
+        const producted = await Product.find({_id: id}).exec()
+        res.status(200).send(producted)
     }catch (err) {
         res.status(400).send('Server error')
     }
@@ -11,7 +13,8 @@ exports.read = async (req, res) => {
 //Get all product
 exports.list = async (req, res) => {
     try {
-        res.status(200).send('list all product complete')
+        const producted = await Product.find().exec()
+        res.status(200).send(producted)
     }catch (err) {
         res.status(400).send('Server errror')
     }
@@ -19,9 +22,9 @@ exports.list = async (req, res) => {
 
 //Post create product
 exports.create = async (req, res) => {
-    try {
-        console.log(req.body)
-        res.status(200).send('create produdct complte')
+    try {   
+        const producted = await Product(req.body).save()
+        res.status(200).send(producted)
     }catch (err) {
         res.status(400).send('Server errror')
     }
@@ -31,7 +34,8 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
     try {
         const id = req.params.id
-        res.status(200).send(`update product id: ${id} complte`)
+        const producted = await Product.updateOne({_id: id}, req.body).exec()
+        res.status(200).send(producted)
     }catch (err) {
         res.status(400).send('Server error')
     }
@@ -41,8 +45,8 @@ exports.update = async (req, res) => {
 exports.remove = async (req, res) => {
     try {
         const id = req.params.id
-        console.log(id)
-        res.status(200).send(`remove product id: ${id} complte`)
+        const producted = await Product.deleteOne({_id: id}).exec()
+        res.status(200).send(producted)
     }catch (err) {
         res.status(400).send('Server errror')
     }
