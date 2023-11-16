@@ -1,8 +1,9 @@
 const express = require('express')
 const route = express.Router()
 
-route.get('/auth', (req, res) => {
-    res.send("auth")
-})
+const {register, login} =  require('../Contrllers/auth')
+
+route.post('/register', register)
+route.post('/login', login)
 
 module.exports = route
