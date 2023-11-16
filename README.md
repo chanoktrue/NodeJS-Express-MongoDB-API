@@ -23,6 +23,6 @@
 * 2.Get /api/product (get all proudct)
 * 3.POST /api/product (crate one product)
 * 4.PUT /api/product/:id (update one product)
-* 5.DELETE /api/product/:id (dlete on product)
+* 5.DELETE /api/product/:id (remove on product)
 
 
